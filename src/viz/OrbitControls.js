@@ -26,7 +26,7 @@ import {
   Spherical,
   Vector2,
   EventDispatcher
-} from "three";
+} from "../../../../.cache/typescript/2.9/node_modules/@types/three";
 
 export default class OrbitControls extends EventDispatcher {
   constructor(object, domElement) {
