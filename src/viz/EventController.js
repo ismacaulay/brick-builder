@@ -1,6 +1,7 @@
 export class EventController {
-  constructor(cameraController) {
+  constructor(cameraController, ghostBlockController) {
     this._cameraController = cameraController;
+    this._ghostBlockController = ghostBlockController;
   }
 
   keyPressed(key) {
@@ -18,6 +19,8 @@ export class EventController {
   mouseMove(x, y) {
     if (this._cameraController.inProgress()) {
       this._cameraController.updateCamera(x, y);
+    } else {
+      this._ghostBlockController.update(x, y);
     }
   }
 

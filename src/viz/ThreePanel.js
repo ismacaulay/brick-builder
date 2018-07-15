@@ -1,7 +1,14 @@
 import * as THREE from "three";
+
 import { CameraContainer } from "./CameraContainer";
 import { EventHandler } from "./EventHandler";
 import { EventController } from "./EventController";
+import { SceneManager } from "./SceneManager";
+import { BlockFactory } from "./BlockFactory";
+import { Raycaster } from "./Raycaster";
+import { ObjectIntersectionCalculator } from "./ObjectIntersectionCalculator";
+import { BlockPositionCalculator } from "./BlockPositionCalculator";
+import { GhostBlockContainer } from "./GhostBlockContainer";
 
 const BOX_WIDTH = 2.0;
 
@@ -32,8 +39,25 @@ export class ThreePanel {
     this._camera.lookAt(new THREE.Vector3());
 
     this._cameraContainer = new CameraContainer(this._camera, container);
+
+    this._sceneManager = new SceneManager(this._scene);
+    this._blockFactory = new BlockFactory(this._sceneManager);
+
+    this._raycaster = new Raycaster(this._camera, this._sceneManager);
+    this._objectIntersectionCalculator = new ObjectIntersectionCalculator(
+      this._raycaster
+    );
+    this._blockPositionCalculator = new BlockPositionCalculator();
+
+    this._ghostBlockContainer = new GhostBlockContainer(
+      this._blockFactory,
+      this._objectIntersectionCalculator,
+      this._blockPositionCalculator
+    );
+
     this._eventController = new EventController(
-      this._cameraContainer.cameraController
+      this._cameraContainer.cameraController,
+      this._ghostBlockContainer.ghostBlockController
     );
 
     this._eventHandler = new EventHandler(container, this._eventController);
@@ -46,13 +70,15 @@ export class ThreePanel {
     const gridHelper = new THREE.GridHelper(1000, 1000 / BOX_WIDTH);
     this._scene.add(gridHelper);
 
-    // const planeGeometry = new THREE.PlaneBufferGeometry(10000, 10000);
-    // planeGeometry.rotateX(-Math.PI / 2);
+    const planeGeometry = new THREE.PlaneBufferGeometry(10000, 10000);
+    planeGeometry.rotateX(-Math.PI / 2);
 
-    // const plane = new THREE.Mesh(
-    //   planeGeometry,
-    //   new THREE.MeshBasicMaterial({ visible: false })
-    // );
+    const plane = new THREE.Mesh(
+      planeGeometry,
+      new THREE.MeshBasicMaterial({ visible: false })
+    );
+    this._sceneManager.addMesh(plane);
+
     // this._scene.add(plane);
     // this._objects.push(plane);
 
@@ -65,25 +91,8 @@ export class ThreePanel {
     //   color: 0x00ff00
     // });
 
-    // const ghostMaterial = new THREE.MeshBasicMaterial({
-    //   color: 0xff0000,
-    //   opacity: 0.5,
-    //   transparent: true
-    // });
-
     // this._wireframeGeometry = new THREE.EdgesGeometry(this._voxelGeometry);
     // this._wireframeMaterial = new THREE.LineBasicMaterial({ color: 0x000000 });
-
-    // this._ghostMesh = new THREE.Mesh(this._voxelGeometry, ghostMaterial);
-    // this._ghostWireframe = new THREE.LineSegments(
-    //   this._wireframeGeometry,
-    //   this._wireframeMaterial
-    // );
-    // this._scene.add(this._ghostMesh);
-    // this._scene.add(this._ghostWireframe);
-
-    // this._raycaster = new THREE.Raycaster();
-    // this._mouse = new THREE.Vector2();
 
     this._onWindowResize = this._onWindowResize.bind(this);
     window.addEventListener("resize", this._onWindowResize);
