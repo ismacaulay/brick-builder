@@ -18,6 +18,8 @@ export class EventController {
   mouseMove(x, y) {
     if (this._cameraController.inProgress()) {
       this._cameraController.updateCamera(x, y);
+    } else {
+      // this._ghostBlockController.update(x, y);
     }
   }
 
