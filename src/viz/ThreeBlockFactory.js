@@ -1,11 +1,11 @@
 import * as THREE from "three";
-import { Block } from "./Block";
-import { BLOCK_WIDTH } from "./constants";
+import { ThreeBlock } from "./ThreeBlock";
 
-export class BlockFactory {
-  constructor(sceneManager) {
-    this._sceneManager = sceneManager;
+// todo: DEAL WITH CONSTANTS
+const BLOCK_WIDTH = 2.0;
 
+export class ThreeBlockFactory {
+  constructor() {
     this._blockGeometry = new THREE.BoxBufferGeometry(
       BLOCK_WIDTH - 0.01,
       BLOCK_WIDTH - 0.01,
@@ -17,20 +17,22 @@ export class BlockFactory {
     this._wireframeMaterial = new THREE.LineBasicMaterial({ color: 0x000000 });
   }
 
-  create(color, opacity) {
+  create(data) {
+    const { color, opacity, position } = data;
+
     const material = new THREE.MeshBasicMaterial({
       color,
       opacity,
       transparent: opacity < 1.0
     });
-    const block = new Block(
+
+    const block = new ThreeBlock(
       this._blockGeometry,
       material,
       this._wireframeGeometry,
       this._wireframeMaterial
     );
-    this._sceneManager.addMesh(block.mesh(), false);
-    this._sceneManager.addMesh(block.wireframe(), false);
+    block.setPosition(position);
     return block;
   }
 }

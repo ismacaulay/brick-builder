@@ -19,6 +19,9 @@ export class EventHandler {
 
     this._onMouseWheel = this._onMouseWheel.bind(this);
     canvas.addEventListener("wheel", this._onMouseWheel, false);
+
+    this._onWindowResize = this._onWindowResize.bind(this);
+    window.addEventListener("resize", this._onWindowResize);
   }
 
   _onKeyPress(event) {
@@ -48,5 +51,9 @@ export class EventHandler {
 
   _onContextMenu(event) {
     event.preventDefault();
+  }
+
+  _onWindowResize(event) {
+    this.controller.windowResize();
   }
 }

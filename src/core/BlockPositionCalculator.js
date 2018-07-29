@@ -1,8 +1,9 @@
-import { BLOCK_WIDTH } from "./constants";
+import { BLOCK_WIDTH } from "./Constants";
+import { Vector3 } from "three";
 
 export class BlockPositionCalculator {
-  calculate(initialPosition, point, normal) {
-    const position = initialPosition.clone();
+  calculate(point, normal) {
+    const position = new Vector3();
     position.copy(point).add(normal);
     position
       .divideScalar(BLOCK_WIDTH)

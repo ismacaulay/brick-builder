@@ -1,9 +1,9 @@
 import React from "react";
-import { ThreePanel } from "./viz";
+import { PanelContainer } from "./PanelContainer";
 
 export class VizPanel extends React.Component {
   componentDidMount() {
-    this._panel = new ThreePanel(this.rootElement);
+    this._panel = new PanelContainer(this.rootElement);
   }
 
   render() {

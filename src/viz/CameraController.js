@@ -5,7 +5,8 @@ const ZOOM_MOUSE_BUTTON = THREE.MOUSE.MIDDLE;
 const PAN_MOUSE_BUTTON = THREE.MOUSE.RIGHT;
 
 export class CameraController {
-  constructor(cameraControls) {
+  constructor(camera, cameraControls) {
+    this._camera = camera;
     this._cameraControls = cameraControls;
 
     this._inProgress = false;
@@ -18,6 +19,11 @@ export class CameraController {
   resetCamera() {
     this._inProgress = false;
     this._cameraControls.reset();
+  }
+
+  updateAspectRatio() {
+    this._camera.aspect = window.innerWidth / window.innerHeight;
+    this._camera.updateProjectionMatrix();
   }
 
   startCameraUpdate(button, x, y) {

@@ -1,7 +1,14 @@
 export class EventController {
-  constructor(cameraController, ghostBlockController) {
+  constructor(
+    cameraController,
+    ghostBlockController,
+    blockController,
+    windowController
+  ) {
     this._cameraController = cameraController;
     this._ghostBlockController = ghostBlockController;
+    this._blockController = blockController;
+    this._windowController = windowController;
   }
 
   keyPressed(key) {
@@ -32,5 +39,10 @@ export class EventController {
 
   mouseWheel(delta) {
     this._cameraController.zoomCamera(delta);
+  }
+
+  windowResize() {
+    this._windowController.updateSize();
+    this._cameraController.updateAspectRatio();
   }
 }

@@ -7,7 +7,7 @@ const CONTROL_STATE = {
   PAN: 2
 };
 
-export class OrbitCameraControls {
+export class ThreeOrbitCameraControls {
   constructor(camera) {
     this._camera = camera;
 
