@@ -5,6 +5,7 @@ import { BlockInserter } from "./BlockInserter";
 import { BlockManager } from "./BlockManager";
 import { BlockController } from "./BlockController";
 import { BlockUpdater } from "./BlockUpdater";
+import { BlockRemover } from "./BlockRemover";
 
 export class CoreContainer {
   constructor(viz) {
@@ -15,12 +16,13 @@ export class CoreContainer {
       this.blockManager,
       this.blockPositionCalculator
     );
-
     this.blockUpdater = new BlockUpdater(this.blockManager);
+    this.blockRemover = new BlockRemover(this.blockManager);
 
     this.blockController = new BlockController(
       viz.objectIntersectionCalculator,
-      this.blockInserter
+      this.blockInserter,
+      this.blockRemover
     );
 
     this.ghostBlock = new GhostBlock(

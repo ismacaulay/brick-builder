@@ -54,6 +54,6 @@ export class EventHandler {
   }
 
   _onWindowResize(event) {
-    this.controller.windowResize();
+    this._controller.windowResize();
   }
 }

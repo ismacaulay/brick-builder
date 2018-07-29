@@ -21,4 +21,11 @@ export class ThreeSceneManager {
       this._objects.push(object);
     }
   }
+
+  removeObject(object) {
+    this._scene.remove(object);
+    this._objects = this._objects.filter(obj => {
+      return obj.id !== object.id;
+    });
+  }
 }

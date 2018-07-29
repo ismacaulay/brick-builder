@@ -11,4 +11,8 @@ export class BlockManager {
   updateBlock(id, data) {
     this._vizController.updateBlock(id, data);
   }
+
+  removeBlock(id) {
+    this._vizController.removeBlock(id);
+  }
 }

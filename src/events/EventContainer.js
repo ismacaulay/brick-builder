@@ -6,7 +6,8 @@ export class EventContainer {
     this.eventContoller = new EventController(
       viz.cameraController,
       core.ghostBlockController,
-      core.blockController
+      core.blockController,
+      viz.sceneController
     );
     this.eventHandler = new EventHandler(canvas, this.eventContoller);
   }

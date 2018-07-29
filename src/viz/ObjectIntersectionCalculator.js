@@ -4,12 +4,13 @@ export class ObjectIntersectionCalculator {
   }
 
   calculate(x, y) {
-    const objects = this._raycaster.castThroughPoint(x, y);
-    if (objects.length > 0) {
-      const object = objects[0];
+    const intersections = this._raycaster.castThroughPoint(x, y);
+    if (intersections.length > 0) {
+      const intersection = intersections[0];
       const ret = {
-        point: object.point,
-        normal: object.face.normal
+        id: intersection.object.id,
+        point: intersection.point,
+        normal: intersection.face.normal
       };
       return ret;
     }
