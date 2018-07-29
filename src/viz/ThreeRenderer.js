@@ -1,7 +1,7 @@
 import * as THREE from "three";
 
 export class ThreeRenderer {
-  constructor(canvas, camera, scene) {
+  constructor(camera, scene) {
     this._camera = camera;
     this._scene = scene;
 
@@ -9,10 +9,10 @@ export class ThreeRenderer {
     this._renderer.setClearColor(0xffffff);
     this._renderer.setPixelRatio(window.devicePixelRatio);
     this._renderer.setSize(window.innerWidth, window.innerHeight);
+  }
 
-    // this.render = this.render.bind(this);
-
-    canvas.appendChild(this._renderer.domElement);
+  addRendererToElement(element) {
+    element.appendChild(this._renderer.domElement);
   }
 
   updateSize() {

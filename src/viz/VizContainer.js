@@ -11,11 +11,11 @@ import { RenderLoop } from "./RenderLoop";
 import { SceneController } from "./SceneController";
 
 export class VizContainer {
-  constructor(canvas) {
+  constructor() {
     this.sceneManager = new ThreeSceneManager();
     this.blockFactory = new ThreeBlockFactory();
 
-    this.camera = new ThreeCamera(canvas);
+    this.camera = new ThreeCamera();
     this.cameraControls = new ThreeOrbitCameraControls(this.camera);
 
     this.raycaster = new Raycaster(
@@ -27,7 +27,6 @@ export class VizContainer {
     );
 
     this.renderer = new ThreeRenderer(
-      canvas,
       this.camera.threeCamera(),
       this.sceneManager.threeScene()
     );
@@ -41,5 +40,10 @@ export class VizContainer {
     this.floorGrid = new FloorGrid(this.sceneManager);
 
     this.renderLoop = new RenderLoop(this.renderer, this.camera);
+  }
+
+  initialize(element) {
+    this.camera.setCanvas(element);
+    this.renderer.addRendererToElement(element);
   }
 }

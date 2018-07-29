@@ -1,11 +1,18 @@
 import React, { Component } from "react";
-import { VizPanel } from "./VizPanel";
+import { Canvas } from "./Canvas";
+import { ApplicationContainer } from "./ApplicationContainer";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this._appContainer = new ApplicationContainer();
+  }
+
   render() {
     return (
       <div className="App">
-        <VizPanel />
+        <Canvas onCreated={this._appContainer.initialize} />
       </div>
     );
   }

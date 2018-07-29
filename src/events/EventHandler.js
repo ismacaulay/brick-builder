@@ -1,27 +1,26 @@
 export class EventHandler {
-  constructor(canvas, controller) {
+  constructor(controller) {
     this._controller = controller;
 
     this._onKeyPress = this._onKeyPress.bind(this);
     document.addEventListener("keypress", this._onKeyPress);
 
     this._onMouseMove = this._onMouseMove.bind(this);
-    canvas.addEventListener("mousemove", this._onMouseMove);
-
     this._onMouseDown = this._onMouseDown.bind(this);
-    canvas.addEventListener("mousedown", this._onMouseDown);
-
     this._onMouseUp = this._onMouseUp.bind(this);
-    canvas.addEventListener("mouseup", this._onMouseUp);
-
     this._onContextMenu = this._onContextMenu.bind(this);
-    canvas.addEventListener("contextmenu", this._onContextMenu);
-
     this._onMouseWheel = this._onMouseWheel.bind(this);
-    canvas.addEventListener("wheel", this._onMouseWheel, false);
 
     this._onWindowResize = this._onWindowResize.bind(this);
     window.addEventListener("resize", this._onWindowResize);
+  }
+
+  initializeElementHandlers(element) {
+    element.addEventListener("mousemove", this._onMouseMove);
+    element.addEventListener("mousedown", this._onMouseDown);
+    element.addEventListener("mouseup", this._onMouseUp);
+    element.addEventListener("contextmenu", this._onContextMenu);
+    element.addEventListener("wheel", this._onMouseWheel, false);
   }
 
   _onKeyPress(event) {

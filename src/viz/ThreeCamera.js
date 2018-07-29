@@ -12,7 +12,7 @@ function calculatePanDistance(delta, distance, fov, canvasSize) {
 }
 
 export class ThreeCamera {
-  constructor(canvas) {
+  constructor() {
     this._camera = new THREE.PerspectiveCamera(
       45,
       window.innerWidth / window.innerHeight,
@@ -26,8 +26,6 @@ export class ThreeCamera {
       cameraInitialPosition
     );
     this._camera.lookAt(new THREE.Vector3());
-
-    this._canvas = canvas;
 
     this._sphericalDelta = new THREE.Spherical();
 
@@ -54,6 +52,10 @@ export class ThreeCamera {
     this._initialTarget = this._target.clone();
     this._initialPosition = this._camera.position.clone();
     this._initialZoom = this._camera.zoom;
+  }
+
+  setCanvas(canvas) {
+    this._canvas = canvas;
   }
 
   threeCamera() {
