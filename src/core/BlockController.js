@@ -15,7 +15,6 @@ export class BlockController {
   removeBlock(x, y) {
     const intersection = this._objectIntersectionCalculator.calculate(x, y);
     if (intersection) {
-      console.log(intersection);
       this._blockRemover.removeBlock(intersection.id);
     }
   }
