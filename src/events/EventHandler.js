@@ -40,7 +40,7 @@ export class EventHandler {
 
   _onMouseUp(event) {
     event.preventDefault();
-    this._controller.mouseUp();
+    this._controller.mouseUp(event.clientX, event.clientY);
   }
 
   _onMouseWheel(event) {

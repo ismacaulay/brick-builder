@@ -5,7 +5,7 @@ export class BlockController {
   }
 
   addBlock(x, y) {
-    const intersection = this._objectIntersectionCalculator.calculate;
+    const intersection = this._objectIntersectionCalculator.calculate(x, y);
     if (intersection) {
       this._blockInserter.addBlock(intersection.point, intersection.normal);
     }
