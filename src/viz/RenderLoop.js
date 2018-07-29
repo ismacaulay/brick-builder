@@ -1,16 +1,14 @@
-export class ThreeSceneController {
+export class RenderLoop {
   constructor(renderer, camera) {
     this._renderer = renderer;
     this._camera = camera;
 
     this._animate = this._animate.bind(this);
-
-    this.updateSize();
-    this._animate();
   }
 
-  updateSize() {
+  start() {
     this._renderer.updateSize();
+    this._animate();
   }
 
   _animate() {

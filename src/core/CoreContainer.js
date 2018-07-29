@@ -10,7 +10,7 @@ import { BlockRemover } from "./BlockRemover";
 export class CoreContainer {
   constructor(viz) {
     this.blockPositionCalculator = new BlockPositionCalculator();
-    this.blockManager = new BlockManager(viz.blockController);
+    this.blockManager = new BlockManager(viz.blockFactory, viz.sceneController);
 
     this.blockInserter = new BlockInserter(
       this.blockManager,

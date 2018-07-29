@@ -11,5 +11,7 @@ export class PanelContainer {
       this.vizContainer,
       container
     );
+
+    this.vizContainer.renderLoop.start();
   }
 }

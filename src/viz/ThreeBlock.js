@@ -10,6 +10,10 @@ export class ThreeBlock {
     );
   }
 
+  id() {
+    return this._mesh.id;
+  }
+
   mesh() {
     return this._mesh;
   }

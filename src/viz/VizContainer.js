@@ -1,6 +1,4 @@
-import { VizBlockController } from "./VizBlockController";
 import { ThreeBlockFactory } from "./ThreeBlockFactory";
-import { ThreeBlockManager } from "./ThreeBlockManager";
 import { ThreeSceneManager } from "./ThreeSceneManager";
 import { CameraController } from "./CameraController";
 import { ThreeOrbitCameraControls } from "./ThreeOrbitCameraControls";
@@ -9,13 +7,13 @@ import { Raycaster } from "./Raycaster";
 import { ThreeRenderer } from "./ThreeRenderer";
 import { ThreeCamera } from "./ThreeCamera";
 import { FloorGrid } from "./FloorGrid";
-import { ThreeSceneController } from "./ThreeSceneController";
+import { RenderLoop } from "./RenderLoop";
+import { SceneController } from "./SceneController";
 
 export class VizContainer {
   constructor(canvas) {
     this.sceneManager = new ThreeSceneManager();
     this.blockFactory = new ThreeBlockFactory();
-    this.blockManager = new ThreeBlockManager(this.sceneManager);
 
     this.camera = new ThreeCamera(canvas);
     this.cameraControls = new ThreeOrbitCameraControls(this.camera);
@@ -34,16 +32,14 @@ export class VizContainer {
       this.sceneManager.threeScene()
     );
 
-    this.sceneController = new ThreeSceneController(this.renderer, this.camera);
+    this.sceneController = new SceneController(this.sceneManager);
     this.cameraController = new CameraController(
       this.camera.threeCamera(),
       this.cameraControls
     );
-    this.blockController = new VizBlockController(
-      this.blockFactory,
-      this.blockManager
-    );
 
     this.floorGrid = new FloorGrid(this.sceneManager);
+
+    this.renderLoop = new RenderLoop(this.renderer, this.camera);
   }
 }
