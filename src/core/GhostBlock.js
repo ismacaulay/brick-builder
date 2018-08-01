@@ -24,4 +24,8 @@ export class GhostBlock {
     const position = this._positionCalculator.calculate(point, normal);
     this._blockUpdater.updateBlock(this._blockId, { position });
   }
+
+  setColor(color) {
+    this._blockUpdater.updateBlock(this._blockId, { color });
+  }
 }

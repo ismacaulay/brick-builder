@@ -6,6 +6,7 @@ import { BlockManager } from "./BlockManager";
 import { BlockController } from "./BlockController";
 import { BlockUpdater } from "./BlockUpdater";
 import { BlockRemover } from "./BlockRemover";
+import { BlockColorController } from "./BlockColorController";
 
 export class CoreContainer {
   constructor(viz) {
@@ -33,6 +34,11 @@ export class CoreContainer {
     this.ghostBlockController = new GhostBlockController(
       viz.objectIntersectionCalculator,
       this.ghostBlock
+    );
+
+    this.blockColorController = new BlockColorController(
+      this.blockController,
+      this.ghostBlockController
     );
   }
 }

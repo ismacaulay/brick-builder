@@ -10,4 +10,8 @@ export class GhostBlockController {
       this._ghostBlock.update(intersection.point, intersection.normal);
     }
   }
+
+  setBlockColor(color) {
+    this._ghostBlock.setColor(color);
+  }
 }

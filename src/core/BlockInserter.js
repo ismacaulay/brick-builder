@@ -9,4 +9,8 @@ export class BlockInserter {
     const id = this._blockManager.addBlock({ position });
     return id;
   }
+
+  setNextBlockColor(color) {
+    this._blockManager.setNextBlockColor(color);
+  }
 }

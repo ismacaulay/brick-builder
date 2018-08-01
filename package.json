@@ -5,6 +5,7 @@
   "homepage": "https://ismacaulay.github.io/brick-builder",
   "dependencies": {
     "react": "^16.4.1",
+    "react-color": "^2.14.1",
     "react-dom": "^16.4.1",
     "react-scripts": "1.1.4",
     "three": "^0.93.0"

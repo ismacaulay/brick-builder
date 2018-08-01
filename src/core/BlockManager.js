@@ -7,7 +7,7 @@ export class BlockManager {
   }
 
   addBlock(data, hitDetection = true) {
-    const { position, color = 0x00ff00, opacity = 1.0 } = data;
+    const { position, color = this._blockColor, opacity = 1.0 } = data;
     const block = this._blockFactory.create({ position, color, opacity });
     this._sceneController.addBlock(block, hitDetection);
     this._blocks[block.id()] = block;
@@ -38,5 +38,9 @@ export class BlockManager {
       this._sceneController.removeBlock(block);
       delete this._blocks[id];
     }
+  }
+
+  setNextBlockColor(color) {
+    this._blockColor = color;
   }
 }

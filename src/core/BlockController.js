@@ -18,4 +18,8 @@ export class BlockController {
       this._blockRemover.removeBlock(intersection.id);
     }
   }
+
+  setBlockColor(color) {
+    this._blockInserter.setNextBlockColor(color);
+  }
 }

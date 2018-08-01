@@ -8,3 +8,13 @@ canvas {
   display: block;
   margin: 0;
 }
+
+.threePanel {
+  position: absolute;
+}
+
+.color-picker {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+}

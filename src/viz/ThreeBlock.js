@@ -31,7 +31,9 @@ export class ThreeBlock {
     this._wireframe.position.copy(position);
   }
 
-  setColor(color) {}
+  setColor(color) {
+    this._mesh.material.color.setHex(color);
+  }
 
   setOpacity(opacity) {}
 }
